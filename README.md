@@ -1,21 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🏙️ Community Hero
+**Hyperlocal Problem Solver | Vibe2Ship Hackathon Submission**
 
-# Run and deploy your AI Studio app
+Community Hero is a proactive civic-issue reporting platform. It empowers citizens to identify, report, and track infrastructure issues (like potholes, water leaks, and broken streetlights) while providing local authorities with a powerful, AI-driven dashboard to prioritize and resolve them efficiently.
 
-This contains everything you need to run your app locally.
-https://ai.studio/apps/746816a6-48ae-4fb0-b811-01cdd4253a0e
+## ✨ Key Features
+- 📸 **Smart Issue Reporting**: Snap a picture of a problem and our AI automatically categorizes it, assesses the severity, and writes a description.
+- 📍 **Automated Geo-location**: Instantly maps reports using precise coordinates.
+- 🤝 **Community Verification**: Neighbors can upvote or corroborate issues to boost their priority.
+- 🧠 **AI Duplicate Detection**: Smart clustering groups similar reports of the same issue together so the system doesn't get flooded.
+- 📊 **Impact Dashboards**: Dedicated views for regular citizens and Sector Administrators.
 
-## Run Locally
+## 🛠️ Built With
+- **Frontend**: React 18, Vite, Tailwind CSS, Leaflet Maps
+- **Backend**: Node.js, Express
+- **Database**: Firebase Firestore
+- **AI Integrations**: 
+  - Google Gemini 3.5 Flash (Vision Analysis & Categorization)
+  - Google Gemini Embedding 2 (Smart Issue Clustering)
+- **Deployment**: Google Cloud Run (Backend/Full-Stack) / Firebase Hosting
 
-**Prerequisites:**  Node.js
+## 🚀 How to Run Locally
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env](.env) to your Gemini API key
-   (the server loads `.env` via `dotenv/config`). In AI Studio this is injected
-   automatically from your configured secret.
-3. Run the app:
-   `npm run dev`
+1. **Clone the repository**
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory and add your API keys:
+   ```env
+   GEMINI_API_KEY=your_google_gemini_api_key
+   ```
+   *(Note: You will also need a `firebase-applet-config.json` containing your Firebase credentials).*
+4. **Start the Development Server**:
+   ```bash
+   npm run dev
+   ```
+5. **Open in Browser**: Navigate to `http://localhost:8000`
