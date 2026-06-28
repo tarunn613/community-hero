@@ -1,0 +1,17 @@
+{
+  "name": "Community Hero",
+  "short_name": "CommunityHero",
+  "theme_color": "#0e1511",
+  "background_color": "#0e1511",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

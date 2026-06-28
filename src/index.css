@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   CIVIC CLARITY — Flat, institutional design system
+   No glass, no glow, no gradients. Clarity over decoration.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Surface stack */
+  --background: #f9f9ff;
+  --surface: #f9f9ff;
+  --surface-bright: #f9f9ff;
+  --surface-dim: #d3daef;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f1f3ff;
+  --surface-container: #e9edff;
+  --surface-container-high: #e1e8fd;
+  --surface-container-highest: #dce2f7;
+  --surface-variant: #dce2f7;
+  --surface-tint: #006c4d;
+  --inverse-surface: #293040;
+  --inverse-on-surface: #edf0ff;
+
+  /* On-colors */
+  --on-background: #141b2b;
+  --on-surface: #141b2b;
+  --on-surface-variant: #3e4943;
+  --outline: #6e7a73;
+  --outline-variant: #bdc9c1;
+
+  /* Primary — Civic Green */
+  --primary: #006145;
+  --primary-container: #0e7c5a;
+  --on-primary: #ffffff;
+  --on-primary-container: #b9ffdd;
+  --primary-fixed: #97f5cb;
+  --primary-fixed-dim: #7bd8b0;
+  --on-primary-fixed: #002115;
+  --on-primary-fixed-variant: #005139;
+  --inverse-primary: #7bd8b0;
+
+  /* Secondary — Civic Blue */
+  --secondary: #3c5ca6;
+  --secondary-container: #90afff;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #1c4088;
+  --secondary-fixed: #dae2ff;
+  --secondary-fixed-dim: #b1c5ff;
+  --on-secondary-fixed: #001947;
+  --on-secondary-fixed-variant: #20438c;
+
+  /* Tertiary */
+  --tertiary: #8b3c39;
+  --tertiary-container: #a9534f;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #ffebe9;
+  --tertiary-fixed: #ffdad7;
+  --tertiary-fixed-dim: #ffb3ae;
+  --on-tertiary-fixed: #3f0306;
+  --on-tertiary-fixed-variant: #792e2c;
+
+  /* Error */
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error: #ffffff;
+  --on-error-container: #93000a;
+
+  /* Community Verification */
+  --verify-pending-bg: #EEF0FF;
+  --verify-pending-text: #3F3AA8;
+  --verify-pending-border: #C5C8F5;
+  --verify-success-bg: #E7F4EC;
+  --verify-success-text: #15803D;
+  --verify-success-border: #BBE2C9;
+
+  /* Admin status semantic */
+  --status-open: #ba1a1a;
+  --status-progress: #d97706;
+  --status-resolved: #0e7c5a;
+
+  /* Border */
+  --border-divider: #E6E8EB;
+
+  /* Legacy aliases (some screens still use these) */
+  --bg-primary: var(--background);
+  --bg-secondary: var(--surface-container-lowest);
+  --bg-outer: var(--surface-container-low);
+  --text-primary: var(--on-surface);
+  --text-secondary: var(--on-surface-variant);
+  --border-custom: var(--outline-variant);
+  --card-active: var(--surface-container-low);
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Surface */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-surface-tint: var(--surface-tint);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+
+  /* On-colors */
+  --color-on-background: var(--on-background);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Primary */
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+  --color-inverse-primary: var(--inverse-primary);
+
+  /* Secondary */
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+
+  /* Tertiary */
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+
+  /* Error */
+  --color-error: var(--error);
+  --color-error-container: var(--error-container);
+  --color-on-error: var(--on-error);
+  --color-on-error-container: var(--on-error-container);
+
+  /* Admin status */
+  --color-status-open: var(--status-open);
+  --color-status-progress: var(--status-progress);
+  --color-status-resolved: var(--status-resolved);
+
+  /* Community Verification */
+  --color-verify-pending-bg: var(--verify-pending-bg);
+  --color-verify-pending-text: var(--verify-pending-text);
+  --color-verify-pending-border: var(--verify-pending-border);
+  --color-verify-success-bg: var(--verify-success-bg);
+  --color-verify-success-text: var(--verify-success-text);
+  --color-verify-success-border: var(--verify-success-border);
+
+  /* Legacy aliases */
+  --color-bg-primary: var(--background);
+  --color-bg-secondary: var(--surface-container-lowest);
+  --color-bg-outer: var(--surface-container-low);
+  --color-text-primary: var(--on-surface);
+  --color-text-secondary: var(--on-surface-variant);
+  --color-border-custom: var(--outline-variant);
+  --color-card-active: var(--surface-container-low);
+  --color-surface-tint: var(--surface-tint);
+
+  /* Amber (kept for compatibility) */
+  --color-amber-neon: #d97706;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Flat cards (replaces glass-card) ────────────────────────── */
+.cc-card,
+.glass-card {
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--border-divider);
+  border-radius: 0.75rem;
+}
+
+/* ── Divider utilities ────────────────────────────────────────── */
+.border-divider  { border-color: var(--border-divider); border-width: 1px; border-style: solid; }
+.border-b-divider { border-bottom-color: var(--border-divider); border-bottom-width: 1px; border-bottom-style: solid; }
+.border-t-divider { border-top-color: var(--border-divider); border-top-width: 1px; border-top-style: solid; }
+.border-r-divider { border-right-color: var(--border-divider); border-right-width: 1px; border-right-style: solid; }
+
+/* ── Status chips ─────────────────────────────────────────────── */
+.chip-reported             { background-color: rgba(186,26,26,0.08);  color: #ba1a1a; border: 1px solid rgba(186,26,26,0.3); }
+.chip-acknowledged         { background-color: rgba(217,119,6,0.08);  color: #d97706; border: 1px solid rgba(217,119,6,0.3); }
+.chip-in-review            { background-color: rgba(217,119,6,0.08);  color: #d97706; border: 1px solid rgba(217,119,6,0.3); }
+.chip-in-progress          { background-color: rgba(60,92,166,0.08);  color: #3c5ca6; border: 1px solid rgba(60,92,166,0.3); }
+.chip-resolved             { background-color: rgba(14,124,90,0.08);  color: #0e7c5a; border: 1px solid rgba(14,124,90,0.3); }
+.chip-pending-verification { background-color: var(--verify-pending-bg); color: var(--verify-pending-text); border: 1px solid var(--verify-pending-border); }
+.chip-verified             { background-color: var(--verify-success-bg); color: var(--verify-success-text); border: 1px solid var(--verify-success-border); }
+.chip-rejected             { background-color: rgba(110,122,115,0.08); color: #6e7a73; border: 1px solid rgba(110,122,115,0.3); }
+
+/* ── Severity left-border (no glow) ──────────────────────────── */
+.severity-high   { border-left: 3px solid var(--error); }
+.severity-medium { border-left: 3px solid var(--status-progress); }
+
+/* ── Verification meter segments ─────────────────────────────── */
+.verify-bar { display: flex; height: 6px; width: 100%; gap: 2px; }
+.verify-seg-done  { flex: 1; background-color: var(--primary-container); }
+.verify-seg-empty { flex: 1; background-color: var(--outline-variant); }
+
+/* ── Shimmer skeleton ─────────────────────────────────────────── */
+.shimmer-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surface-container);
+}
+.shimmer-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Legacy compatibility stubs ──────────────────────────────── */
+.glass-panel { background-color: var(--surface-container-lowest); border: 1px solid var(--border-divider); border-radius: 0.75rem; }
+.select-field { background-color: var(--surface-container-low); border: 1px solid var(--outline-variant); color: var(--on-surface); border-radius: 0.5rem; padding: 0.625rem 0.75rem; width: 100%; appearance: none; }
+.select-field:focus { outline: none; border-color: var(--primary); }
+.select-field:disabled { opacity: 0.5; cursor: not-allowed; }
+.select-field option { color: var(--on-surface); background-color: var(--surface-container-lowest); }
+.btn-primary { background-color: var(--primary-container); color: var(--on-primary); border-radius: 0.75rem; padding: 0.75rem 1.5rem; font-weight: 600; border: none; cursor: pointer; }
+.btn-primary:hover { background-color: var(--primary); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+/* Aurora glows removed */
+.aurora-glow-primary, .aurora-glow-secondary { display: none; }
+/* FAB shadow (flat, no glow ring) */
+.fab-glow { box-shadow: 0 4px 16px rgba(0,97,69,0.25); }
+/* Scrollbar hide */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Leaflet ──────────────────────────────────────────────────── */
+.leaflet-container { width: 100%; height: 100%; z-index: 10; }
+
+/* ── Animations ───────────────────────────────────────────────── */
+@keyframes shimmer  { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes fadeIn   { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn  { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse    { 0%, 100% { transform: scale(0.95); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+
+.pulse-dot { animation: pulse 2s infinite ease-in-out; }
+
+/* ── Reduced motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

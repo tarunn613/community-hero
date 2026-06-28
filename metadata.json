@@ -1,0 +1,1 @@
+{"name":"Community Hero","description":"A mobile-first platform for reporting and tracking local civic issues like potholes, streetlights, and leaks with real-time AI image analysis.","requestFramePermissions":["camera","geolocation"],"majorCapabilities":["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]}

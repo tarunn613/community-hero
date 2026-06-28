@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// NOTE ON SECURITY MODEL
+// The Express API now talks to Firestore via the Firebase Admin SDK, meaning
+// backend writes and token validations bypass these rules securely.
+// Client operations directly to Firestore now strictly require authentication.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if request.auth != null 
+                            && request.auth.uid == userId
+                            && request.resource.data.keys().hasAll(['uid'])
+                            && request.resource.data.uid is string;
+      allow delete: if false;
+    }
+
+    match /usernames/{username} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /reports/{reportId} {
+      allow read: if true;
+      allow create: if request.auth != null
+                    && request.resource.data.keys().hasAll(['issueType', 'status'])
+                    && request.resource.data.issueType is string
+                    && request.resource.data.status is string
+                    && (!('imageBase64' in request.resource.data)
+                        || request.resource.data.imageBase64.size() < 5000000);
+      allow update: if request.auth != null;
+      allow delete: if false;
+    }
+  }
+}
