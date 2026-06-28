@@ -1,0 +1,14 @@
+# ==============================================================================
+# NOTE: This is a Full-Stack Node.js (React + Express) project.
+# All project dependencies are managed via `package.json`.
+# ==============================================================================
+#
+# To install the requirements for this project, you must have Node.js installed.
+# Then, run the following command in the terminal:
+#
+#    npm install
+#
+# ==============================================================================
+# Python Requirements:
+# The included `refactor.py` script only uses standard Python libraries (os, re).
+# No external Python packages via `pip` are required.
