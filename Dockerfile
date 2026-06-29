@@ -1,5 +1,5 @@
 # Use the official lightweight Node.js 18 image.
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port the Express server listens on
-EXPOSE 8000
+EXPOSE 8080
 
 # Set Node to production mode
 ENV NODE_ENV=production

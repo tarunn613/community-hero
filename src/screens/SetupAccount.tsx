@@ -7,7 +7,7 @@ import { db, auth } from "../AppContext";
 import toast from "react-hot-toast";
 
 export const SetupAccount: React.FC = () => {
-  const { user, userProfile, fetchUserProfile } = useApp();
+  const { user, userProfile, fetchUserProfile, signOut } = useApp();
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState("");
@@ -98,7 +98,14 @@ export const SetupAccount: React.FC = () => {
   return (
     <div className="w-full max-w-[480px] min-h-screen flex flex-col bg-surface-container-lowest border-x border-outline-variant relative shadow-sm mx-auto">
       <header className="flex items-center justify-between px-4 h-16 w-full sticky top-0 bg-surface-container-lowest z-10">
-        <button onClick={() => navigate(-1)} aria-label="Go back" className="text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 p-2 rounded-full -ml-2">
+        <button 
+          onClick={async () => {
+            await signOut();
+            navigate("/");
+          }} 
+          aria-label="Go back" 
+          className="text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 p-2 rounded-full -ml-2"
+        >
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>arrow_back</span>
         </button>
         <h1 className="font-semibold text-[18px] text-on-surface absolute left-1/2 -translate-x-1/2">Set up account</h1>

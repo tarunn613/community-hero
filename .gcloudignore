@@ -1,0 +1,12 @@
+# Ignore node_modules, build outputs, and local environments
+node_modules/
+dist/
+build/
+.env
+.env.local
+.git/
+.agents/
+.claude/
+.antigravity/
+*.zip
+.DS_Store

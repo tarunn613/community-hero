@@ -92,7 +92,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     });
   };
 
-  const fetchUserProfile = async (uid: string) => {
+  const fetchUserProfile = async (uid: string, currentUser?: User | null) => {
     try {
       const userRef = doc(db, "users", uid);
       const userSnap = await getDoc(userRef);
@@ -101,12 +101,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         const profileData = userSnap.data() as UserProfile;
         setUserProfile(profileData);
       } else {
+        const activeUser = currentUser || auth.currentUser || user;
         // Create initial profile if it doesn't exist
         const initialProfile: UserProfile = {
           uid,
-          displayName: user?.displayName || "Civic Guardian",
-          email: user?.email || null,
-          photoURL: user?.photoURL || null,
+          displayName: activeUser?.displayName || "Civic Guardian",
+          email: activeUser?.email || null,
+          photoURL: activeUser?.photoURL || null,
           joinedAt: new Date(),
           reportsCount: uid === "test-user-123" ? 3 : 0,
           resolvedCount: uid === "test-user-123" ? 1 : 0,
@@ -128,7 +129,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (currentUser) {
         setIsGuest(false);
         localStorage.removeItem("is_guest");
-        await fetchUserProfile(currentUser.uid);
+        await fetchUserProfile(currentUser.uid, currentUser);
       } else {
         setUserProfile(null);
       }

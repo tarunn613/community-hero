@@ -22,9 +22,10 @@ import { VerifyNearbyFixes } from "./screens/VerifyNearbyFixes";
 import { BottomNav } from "./components/BottomNav";
 import { Toaster } from "react-hot-toast";
 
-const CitizenRoute = ({ children, isAuthorized, isAdmin }: { children: React.ReactNode, isAuthorized: boolean, isAdmin: boolean }) => {
+const CitizenRoute = ({ children, isAuthorized, isAdmin, needsSetup }: { children: React.ReactNode, isAuthorized: boolean, isAdmin: boolean, needsSetup?: boolean }) => {
   if (!isAuthorized) return <Navigate to="/" replace />;
   if (isAdmin) return <Navigate to="/admin" replace />;
+  if (needsSetup) return <Navigate to="/setup-account" replace />;
   return <>{children}</>;
 };
 
@@ -34,8 +35,9 @@ const AdminRoute = ({ children, isAuthorized, isAdmin }: { children: React.React
   return <>{children}</>;
 };
 
-const RootRoute = ({ isAuthorized, isAdmin }: { isAuthorized: boolean, isAdmin: boolean }) => {
+const RootRoute = ({ isAuthorized, isAdmin, needsSetup }: { isAuthorized: boolean, isAdmin: boolean, needsSetup: boolean }) => {
   if (isAdmin) return <Navigate to="/admin" replace />;
+  if (needsSetup) return <Navigate to="/setup-account" replace />;
   if (isAuthorized) return <Navigate to="/home" replace />;
   return <Onboarding />;
 };
@@ -54,29 +56,30 @@ const AppContent: React.FC = () => {
 
   const isAuthorized = !!user || isGuest;
   const isAdmin = userProfile?.role === "sector_admin" || userProfile?.role === "super_admin";
+  const needsSetup = !!(user && userProfile && !userProfile.userId);
 
   return (
     <div className="h-[100dvh] w-full bg-surface-container-low flex justify-center items-stretch overflow-hidden">
       <div className="w-full max-w-[430px] h-full bg-background text-on-surface relative flex flex-col border-x border-outline-variant shadow-sm overflow-hidden">
         <Routes>
-          <Route path="/"                     element={<RootRoute isAuthorized={isAuthorized} isAdmin={isAdmin} />} />
+          <Route path="/"                     element={<RootRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup} />} />
           <Route path="/setup-account"        element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><SetupAccount /></CitizenRoute>} />
           <Route path="/admin/register"       element={<AdminRegistration />} />
           <Route path="/admin/login"          element={<AdminSignIn />} />
-          <Route path="/home"                 element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><Home /></CitizenRoute>} />
-          <Route path="/capture"              element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><Capture /></CitizenRoute>} />
-          <Route path="/report-select"        element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><ReportSelect /></CitizenRoute>} />
-          <Route path="/analysis"             element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><Analysis /></CitizenRoute>} />
-          <Route path="/map"                  element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><MapScreen /></CitizenRoute>} />
-          <Route path="/sectors"              element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><SectorSelect /></CitizenRoute>} />
-          <Route path="/sector/:sectorId"     element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><SectorIssues /></CitizenRoute>} />
+          <Route path="/home"                 element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><Home /></CitizenRoute>} />
+          <Route path="/capture"              element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><Capture /></CitizenRoute>} />
+          <Route path="/report-select"        element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><ReportSelect /></CitizenRoute>} />
+          <Route path="/analysis"             element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><Analysis /></CitizenRoute>} />
+          <Route path="/map"                  element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><MapScreen /></CitizenRoute>} />
+          <Route path="/sectors"              element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><SectorSelect /></CitizenRoute>} />
+          <Route path="/sector/:sectorId"     element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><SectorIssues /></CitizenRoute>} />
           <Route path="/admin"                element={<AdminRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><AdminQueue /></AdminRoute>} />
           <Route path="/admin/report/:id"     element={<AdminRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><AdminReportDetail /></AdminRoute>} />
-          <Route path="/report/:id"           element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><ReportDetail /></CitizenRoute>} />
-          <Route path="/verify"               element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><VerifyNearbyFixes /></CitizenRoute>} />
-          <Route path="/my-reports"           element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><MyReports /></CitizenRoute>} />
-          <Route path="/leaderboard"          element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><Leaderboard /></CitizenRoute>} />
-          <Route path="/settings"             element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin}><Settings /></CitizenRoute>} />
+          <Route path="/report/:id"           element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><ReportDetail /></CitizenRoute>} />
+          <Route path="/verify"               element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><VerifyNearbyFixes /></CitizenRoute>} />
+          <Route path="/my-reports"           element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><MyReports /></CitizenRoute>} />
+          <Route path="/leaderboard"          element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><Leaderboard /></CitizenRoute>} />
+          <Route path="/settings"             element={<CitizenRoute isAuthorized={isAuthorized} isAdmin={isAdmin} needsSetup={needsSetup}><Settings /></CitizenRoute>} />
           <Route path="*"                     element={<Navigate to="/" replace />} />
         </Routes>
         {!isAdmin && <BottomNav />}
